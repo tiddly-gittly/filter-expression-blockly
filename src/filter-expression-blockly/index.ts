@@ -7,6 +7,7 @@ import * as Blockly from 'blockly/core';
 import * as En from 'blockly/msg/en';
 import * as ZhHans from 'blockly/msg/zh-hans';
 import { getBlocks } from './blocks';
+import { filterGenerator } from './generator';
 
 class FilterExpressionBlocklyWidget extends Widget {
   refresh(_changedTiddlers: IChangedTiddlers) {
@@ -32,10 +33,14 @@ class FilterExpressionBlocklyWidget extends Widget {
     }
 
     const workspace = Blockly.inject(containerElement, { horizontalLayout: true, toolbox: getBlocks() });
+    workspace.addChangeListener(() => {
+      const generatedCode = filterGenerator.workspaceToCode(workspace);
+      this.onSave(generatedCode);
+    });
     this.domNodes.push(containerElement);
   }
 
-  onSave = (newText: string): void => {
+  onSave(newText: string): void {
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!this.editTitle) {
       return;
@@ -47,7 +52,7 @@ class FilterExpressionBlocklyWidget extends Widget {
       return;
     }
     $tw.wiki.setText(this.editTitle, field, undefined, newText);
-  };
+  }
 
   execute() {
     this.editTitle = this.getAttribute('tiddler', this.getVariable('currentTiddler'));
