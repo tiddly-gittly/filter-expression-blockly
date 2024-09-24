@@ -1,0 +1,9 @@
+title: $:/plugins/linonetwo/filter-expression-blockly/language/zh-Hans/Readme
+
+\procedure lingo-base() $:/plugins/linonetwo/filter-expression-blockly/language/
+
+! <<lingo Name>>
+
+<<lingo Description>>
+
+<$FilterExpressionBlockly />
