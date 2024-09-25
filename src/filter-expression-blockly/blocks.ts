@@ -3,8 +3,8 @@ import * as Blockly from 'blockly/core';
 export function getBlocks() {
   Blockly.defineBlocksWithJsonArray([
     {
-      type: 'filter_expression',
-      message0: '%1 [%2]',
+      type: 'filter_run',
+      message0: '%1[%2]',
       args0: [
         {
           type: 'field_dropdown',
@@ -22,7 +22,7 @@ export function getBlocks() {
           ],
         },
         {
-          type: 'input_value',
+          type: 'input_statement',
           name: 'FILTER_STEPS',
           check: ['filter_step', 'filter_step_all'],
         },
@@ -32,18 +32,18 @@ export function getBlocks() {
         {
           type: 'input_value',
           name: 'NEXT_EXPRESSION',
-          check: 'filter_expression',
+          check: 'filter_run',
         },
       ],
       // inputsInline: true,
-      output: 'filter_expression',
+      output: 'filter_run',
       colour: 230,
-      tooltip: 'A filter expression containing runs',
+      tooltip: 'A filter run that is part of an expression',
       helpUrl: '',
     },
     {
       type: 'filter_step_all',
-      message0: 'All [%1]%2',
+      message0: 'All [%1]',
       args0: [
         {
           type: 'field_dropdown',
@@ -57,20 +57,16 @@ export function getBlocks() {
             ['TIDDLERS', 'tiddlers'],
           ],
         },
-        {
-          type: 'input_value',
-          name: 'FILTER_STEPS',
-          check: ['filter_step', 'filter_step_all'],
-        },
       ],
-      output: 'filter_step',
+      previousStatement: 'filter_step',
+      nextStatement: 'filter_step',
       colour: 160,
       tooltip: 'A step that retrieves all items in a category',
       helpUrl: '',
     },
     {
       type: 'filter_step',
-      message0: '%1[%2] %3',
+      message0: '%1[%2]',
       args0: [
         {
           type: 'field_input',
@@ -82,14 +78,10 @@ export function getBlocks() {
           type: 'field_input',
           name: 'PARAM',
         },
-        {
-          type: 'input_value',
-          name: 'FILTER_STEPS',
-          check: ['filter_step', 'filter_step_all'],
-        },
       ],
       inputsInline: true,
-      output: 'filter_step',
+      previousStatement: 'filter_step',
+      nextStatement: 'filter_step',
       colour: 160,
       tooltip: 'Any custom filter operator for a filter step',
       helpUrl: '',
@@ -99,7 +91,7 @@ export function getBlocks() {
   const toolbox = {
     kind: 'flyoutToolbox',
     contents: [
-      { kind: 'block', type: 'filter_expression' },
+      { kind: 'block', type: 'filter_run' },
       { kind: 'block', type: 'filter_step_all' },
       { kind: 'block', type: 'filter_step' },
     ],
