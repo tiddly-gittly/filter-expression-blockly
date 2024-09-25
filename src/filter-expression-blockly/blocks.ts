@@ -10,6 +10,7 @@ export function getBlocks() {
           type: 'field_dropdown',
           name: 'PREFIX',
           options: [
+            ['', ''],
             ['ALL', ':all'],
             ['CASCADE', ':cascade'],
             ['ELSE', ':else'],
@@ -27,16 +28,9 @@ export function getBlocks() {
           check: ['filter_step', 'filter_step_all'],
         },
       ],
-      message1: ' %1',
-      args1: [
-        {
-          type: 'input_value',
-          name: 'NEXT_EXPRESSION',
-          check: 'filter_run',
-        },
-      ],
-      // inputsInline: true,
-      output: 'filter_run',
+      previousStatement: 'filter_run',
+      nextStatement: 'filter_run',
+      // output: 'filter_run',
       colour: 230,
       tooltip: 'A filter run that is part of an expression',
       helpUrl: '',

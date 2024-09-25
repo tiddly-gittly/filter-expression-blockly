@@ -4,6 +4,6 @@ title: $:/plugins/linonetwo/filter-expression-blockly/readme
 
 <<lingo Readme>>
 
-{{$:/temp/filter-expression-blockly/readme-example}}
+<$codeblock code={{$:/temp/filter-expression-blockly/readme-example}} />
 
 <$FilterExpressionBlockly tiddler="$:/temp/filter-expression-blockly/readme-example" />
