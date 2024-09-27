@@ -83,12 +83,60 @@ export function getBlocks() {
     },
     {
       type: 'list_widget',
-      message0: '<$list\nfilter=%1\n>',
+      message0: '<$list\nfilter=%1\n',
       args0: [
         {
           type: 'input_statement',
           name: 'FILTER_RUNS',
-          check: ['filter_run'],
+          check: 'filter_run',
+        },
+      ],
+      message1: 'limit=%1\ntemplate=%2\neditTemplate=%3\njoin=%4\nvariable=%5\ncounter=%6\nemptyMessage=%7\nstoryview=%8\nhistory=%9\n>',
+      args1: [
+        {
+          type: 'field_number',
+          name: 'LIMIT',
+          value: 10, // Default value
+        },
+        {
+          type: 'field_input',
+          name: 'TEMPLATE',
+          text: '',
+        },
+        {
+          type: 'field_input',
+          name: 'EDIT_TEMPLATE',
+          text: '',
+        },
+        {
+          type: 'field_input',
+          name: 'JOIN',
+          text: '',
+        },
+        {
+          type: 'field_input',
+          name: 'VARIABLE',
+          text: 'currentTiddler', // Default variable name
+        },
+        {
+          type: 'field_input',
+          name: 'COUNTER',
+          text: '',
+        },
+        {
+          type: 'field_input',
+          name: 'EMPTY_MESSAGE',
+          text: 'No items found', // Default message
+        },
+        {
+          type: 'field_input',
+          name: 'STORYVIEW',
+          text: '',
+        },
+        {
+          type: 'field_input',
+          name: 'HISTORY',
+          text: '',
         },
       ],
       inputsInline: true,

@@ -38,7 +38,25 @@ filterGenerator.forBlock.filter_step = function(block, _generator) {
 
 filterGenerator.forBlock.list_widget = function(block, _generator) {
   const filters = getAllStatements(block, 'FILTER_RUNS').join('');
-  return `<$list filter="${filters}" />`;
+
+  const attributes = [
+    'LIMIT',
+    'TEMPLATE',
+    'EDIT_TEMPLATE',
+    'JOIN',
+    'VARIABLE',
+    'COUNTER',
+    'EMPTY_MESSAGE',
+    'STORYVIEW',
+    'HISTORY',
+  ];
+
+  // Build the attributes string using map
+  const attributesString = attributes.map(attribute => {
+    const value = block.getFieldValue(attribute) as string ?? '';
+    return `${attribute.toLowerCase()}="${value}"`;
+  }).join(' ');
+  return `<$list filter="${filters}" ${attributesString} />`;
 };
 
 /**
