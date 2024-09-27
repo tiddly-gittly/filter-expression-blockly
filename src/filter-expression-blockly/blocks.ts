@@ -26,7 +26,7 @@ export function getBlocks() {
         {
           type: 'input_statement',
           name: 'FILTER_STEPS',
-          check: ['filter_step', 'filter_step_all'],
+          check: ['filter_step', 'all_filter_step'],
         },
       ],
       previousStatement: 'filter_run',
@@ -37,7 +37,7 @@ export function getBlocks() {
       helpUrl: '',
     },
     {
-      type: 'filter_step_all',
+      type: 'all_filter_step',
       message0: 'all [%1]',
       args0: [
         {
@@ -81,6 +81,23 @@ export function getBlocks() {
       tooltip: 'Any custom filter operator for a filter step',
       helpUrl: '',
     },
+    {
+      type: 'list_widget',
+      message0: '<$list\nfilter=%1\n>',
+      args0: [
+        {
+          type: 'input_statement',
+          name: 'FILTER_RUNS',
+          check: ['filter_run'],
+        },
+      ],
+      inputsInline: true,
+      previousStatement: ['widget'],
+      nextStatement: ['widget'],
+      colour: 160,
+      tooltip: 'The list widget displays a sequence of tiddlers that match a tiddler filter',
+      helpUrl: '',
+    },
   ]);
 
   const toolbox = {
@@ -99,7 +116,14 @@ export function getBlocks() {
         kind: 'category',
         name: 'Filter Steps',
         contents: [
-          { kind: 'block', type: 'filter_step_all' },
+          { kind: 'block', type: 'all_filter_step' },
+        ],
+      },
+      {
+        kind: 'category',
+        name: 'Widgets',
+        contents: [
+          { kind: 'block', type: 'list_widget' },
         ],
       },
       {

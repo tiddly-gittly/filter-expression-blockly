@@ -25,7 +25,7 @@ filterGenerator.forBlock.filter_run = function(block, _generator) {
   return `${prefix}[${steps}]`;
 };
 
-filterGenerator.forBlock.filter_step_all = function(block, _generator) {
+filterGenerator.forBlock.all_filter_step = function(block, _generator) {
   const category = block.getFieldValue('CATEGORY') as string;
   return `all[${category}]`;
 };
@@ -36,6 +36,11 @@ filterGenerator.forBlock.filter_step = function(block, _generator) {
   return `${operator}[${parameter}]`;
 };
 
+filterGenerator.forBlock.list_widget = function(block, _generator) {
+  const filters = getAllStatements(block, 'FILTER_RUNS').join('');
+  return `<$list filter="${filters}" />`;
+};
+
 /**
  * Serialize all top level filter runs to code.
  * Without this, it will only serialize the first filter run.
@@ -44,7 +49,8 @@ const workspaceTopLevelFilterRunsToCode: typeof filterGenerator.workspaceToCode 
   if (workspace === undefined) {
     return '';
   }
-  const firstFilterRun = workspace.getBlocksByType('filter_run')?.[0];
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  const firstFilterRun = workspace.getBlocksByType('list_widget')?.[0] || workspace.getBlocksByType('filter_run')?.[0];
   let currentBlock: Block | null | undefined = firstFilterRun;
   let code = '';
   while (currentBlock !== null && currentBlock !== undefined) {
