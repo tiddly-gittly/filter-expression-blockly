@@ -1,25 +1,26 @@
 import * as Blockly from 'blockly/core';
+import '@blockly/toolbox-search';
 
 export function getBlocks() {
   Blockly.defineBlocksWithJsonArray([
     {
       type: 'filter_run',
-      message0: '%1[%2]',
+      message0: 'Run %1[\n%2]',
       args0: [
         {
           type: 'field_dropdown',
           name: 'PREFIX',
           options: [
             ['', ''],
-            ['ALL', ':all'],
-            ['CASCADE', ':cascade'],
-            ['ELSE', ':else'],
-            ['FILTER', ':filter'],
-            ['INTERSECTION', ':intersection'],
-            ['MAP', ':map'],
-            ['REDUCE', ':reduce'],
-            ['SORT', ':sort'],
-            ['THEN', ':then'],
+            [':all', ':all'],
+            [':cascade', ':cascade'],
+            [':else', ':else'],
+            [':filter', ':filter'],
+            [':intersection', ':intersection'],
+            [':map', ':map'],
+            [':reduce', ':reduce'],
+            [':sort', ':sort'],
+            [':then', ':then'],
           ],
         },
         {
@@ -37,18 +38,18 @@ export function getBlocks() {
     },
     {
       type: 'filter_step_all',
-      message0: 'All [%1]',
+      message0: 'all [%1]',
       args0: [
         {
           type: 'field_dropdown',
           name: 'CATEGORY',
           options: [
-            ['CURRENT', 'current'],
-            ['MISSING', 'missing'],
-            ['ORPHANS', 'orphans'],
-            ['SHADOWS', 'shadows'],
-            ['TAGS', 'tags'],
-            ['TIDDLERS', 'tiddlers'],
+            ['current', 'current'],
+            ['missing', 'missing'],
+            ['orphans', 'orphans'],
+            ['shadows', 'shadows'],
+            ['tags', 'tags'],
+            ['tiddlers', 'tiddlers'],
           ],
         },
       ],
@@ -83,11 +84,29 @@ export function getBlocks() {
   ]);
 
   const toolbox = {
-    kind: 'flyoutToolbox',
+    kind: 'categoryToolbox',
     contents: [
-      { kind: 'block', type: 'filter_run' },
-      { kind: 'block', type: 'filter_step_all' },
-      { kind: 'block', type: 'filter_step' },
+      {
+        kind: 'category',
+        name: 'General',
+        expanded: true,
+        contents: [
+          { kind: 'block', type: 'filter_run' },
+          { kind: 'block', type: 'filter_step' },
+        ],
+      },
+      {
+        kind: 'category',
+        name: 'Filter Steps',
+        contents: [
+          { kind: 'block', type: 'filter_step_all' },
+        ],
+      },
+      {
+        kind: 'search',
+        name: 'Search',
+        contents: [],
+      },
     ],
   };
 

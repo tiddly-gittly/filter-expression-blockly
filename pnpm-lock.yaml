@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@blockly/toolbox-search':
+        specifier: ^2.0.9
+        version: 2.0.9(blockly@11.1.1)
       blockly:
         specifier: ^11.1.1
         version: 11.1.1
@@ -82,6 +85,11 @@ packages:
   '@babel/highlight@7.24.7':
     resolution: {integrity: sha512-EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==}
     engines: {node: '>=6.9.0'}
+
+  '@blockly/toolbox-search@2.0.9':
+    resolution: {integrity: sha512-d9Hps8Yi40gEFqAbHV5KgbvW0ySvHVJ9txkL6qVUY5veaJ3PBoanIFvEcKPp4wUhT8JxdpYL9r3nane5rsaYaQ==}
+    peerDependencies:
+      blockly: ^11.0.0
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -2921,6 +2929,10 @@ snapshots:
       chalk: 2.4.2
       js-tokens: 4.0.0
       picocolors: 1.1.0
+
+  '@blockly/toolbox-search@2.0.9(blockly@11.1.1)':
+    dependencies:
+      blockly: 11.1.1
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
